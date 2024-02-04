@@ -6,14 +6,14 @@
     <title>Document</title>
   </head>
   <body>
+    <h1>ДЗ 13. Складніші цикли</h1>
     <script>
       //1.Вивести числа від 20 до 30 через пропуск, використовуючи крок 0,5 (20 20,5 21 21,5….)
-
       let arr1 = "";
       for (let i = 20; i <= 30; i = i + 0.5) {
         arr1 += i + " ";
       }
-
+      // Append results
       document.write(
         " <b> 1. Вивести числа від 20 до 30 через пропуск, використовуючи крок 0,5 (20 20,5 21 21,5….): </b>" +
           "<br>" +
@@ -22,194 +22,83 @@
       );
 
       //2. Один долар коштує 27 гривень. Вивести дані з розрахунком вартості 10, 20, 30... 100 доларів
-
       let arr2 = "";
       for (let i = 10; i <= 100; i = i + 10) {
         arr2 = arr2 + i * 27 + "; ";
       }
-
+      // Append results
       document.write(
-        " <b> 2. Один долар коштує 27 гривень. Вивести дані з розрахунком вартості 10, 20, 30... 100 доларів: </b>" +
+        "<br> <b> 2. Один долар коштує 27 гривень. Вивести дані з розрахунком вартості 10, 20, 30... 100 доларів: </b>" +
           "<br>" +
           arr2 +
           "<br>"
       );
 
       //3. Дане ціле число. Вивести всі цілі числа від 1 до 100, квадрат яких не перевищує числа N
-
-      // let n = +prompt("Введіть будь-яке ціле число", "");
-      // let k = "";
-      // for (let i = 10; i <= 100; i++) {
-      //   while (k=i** 2 <= n) {
-      //     yield i++;
-      //   }
-      //   document.write(k + "; ");
-      // }
+      let n = +prompt("3. Введіть будь-яке ціле число", "");
+      // Define generator function that checks if square of the number is greater than 100 or not
+      const hund = function* (n) {
+        const limit = Math.min(100, Math.sqrt(n));
+        let i = 1;
+        while (i <= limit) {
+          yield i++;
+        }
+      };
+      // Use the function
+      arr3 = [];
+      for (const x of hund(n)) {
+        // Append number to array
+        arr3 = arr3 + x + "; ";
+      }
+      // Append results
+      document.write(
+        "<br> <b> 3. Числа від 1 до 100, квадрат яких не перевищує числа " +
+          n +
+          ": </b> <br>" +
+          arr3 +
+          "<br>"
+      );
 
       //4. Дане ціле число. З'ясувати, чи є воно простим (простим називається число, більше 1, які не мають інших дільників крім 1 і себе)
+      let number = +prompt("4. Введіть будь-яке ціле число", "");
 
-      let n = +prompt("Введіть будь-яке ціле число", "");
-
-      function pr() {
-        if (n % 2 == 0) {
-          return " Число " + n + " непросте <br>";
+      function isPrime(number) {
+        //Check whether number can be divided by number-1
+        let isPrimeNum = true;
+        for (let i = number - 1; i >= 2; i--) {
+          if (number % i === 0) isPrimeNum = false;
+        }
+        //Return results
+        if (isPrimeNum) {
+          return "просте";
         } else {
-          return " Число " + n + " просте <br>";
+          return "непросте";
         }
       }
-      document.write(" <br> <b> 4. Ціле число: </b>" + n + "<br>" + pr);
+      // Append results
+      document.write(
+        "<br> <b> 4. Ціле число " + number + " " + isPrime(number) + "<br> </b>"
+      );
 
       //5. Дане деяке число. Визначити, чи можна одержати це число шляхом зведення числа 3 у деякий ступінь. (Наприклад, числа 9, 81 можна отримати, а 13 - не можна)
+      let num = +prompt("5. Введіть будь-яке ціле число", "");
 
-      let num = +prompt("Введіть будь-яке ціле число", "");
-
-      function three(num) {
+      function third(num) {
+        //Check
         while (num % 3 == 0) {
           num /= 3;
         }
-        return num == 1;
-      }
-
-      document.write(" <br> <b> 5. Ціле число: </b>" + n + "<br>" + three);
-
-      //01. Вивести на сторінку в один рядок через кому числа від 10 до 20
-      let tmp = "";
-      for (let i = 10; i <= 20; i++) {
-        tmp = tmp + i + "; ";
-      }
-
-      document.write(
-        " <b> 1. В один рядок через кому числа від 10 до 20: </b>" +
-          "<br>" +
-          tmp +
-          "<br>"
-      );
-
-      //02. Вивести квадрати чисел від 10 до 20
-      document.write(" <br> <b> 2. Квадрати чисел від 10 до 20: </b>" + "<br>");
-      let t = "";
-      for (let i = 10; i <= 20; i++) {
-        t = i ** 2;
-
-        document.write(" Для " + i + " = " + t + "<br>");
-      }
-
-      //03. Вивести таблицю множення на 7
-      let tm = "";
-      for (let i = 1; i <= 10; i++) {
-        tm = tm + 7 + " * " + i + " = " + 7 * i + "<br>";
-      }
-
-      document.write("<br> <b> 3. Таблиця множення на 7: </b>" + "<br>" + tm);
-
-      //4. Знайти суму всіх цілих чисел від 1 до 15
-      let sum = 0;
-      for (let i = 0; i <= 15; i++) {
-        sum += i;
-      }
-
-      document.write(
-        "<br> <b> 4. Сума всіх цілих чисел від 1 до 15 = </b>" +
-          sum +
-          ";" +
-          "<br>"
-      );
-
-      //5. Знайти добуток усіх цілих чисел від 15 до 35
-      let mult = 1;
-      for (let i = 15; i <= 35; i++) {
-        mult = mult * i;
-      }
-
-      document.write(
-        "<br> <b> 5. Добуток усіх цілих чисел від 15 до 35 = </b>" +
-          mult +
-          ";" +
-          "<br>"
-      );
-
-      //6. Знайти середнє арифметичне всіх цілих чисел від 1 до 500
-      let total = 0;
-      let b = 500;
-      for (let i = 0; i <= b; i++) {
-        total += i;
-      }
-      let avg = total / b;
-
-      document.write(
-        "<br> <b> 6. Середнє арифметичне всіх цілих чисел від 1 до 500 = </b>" +
-          avg +
-          ";" +
-          "<br>"
-      );
-
-      //7. Вивести суму лише парних чисел в діапазоні від 30 до 80
-      let summ = 0;
-      for (let i = 30; i <= 80; i++)
-        if (i % 2 == 0) {
-          summ += i;
-        }
-
-      document.write(
-        "<br> <b> 7. Сума лише парних чисел в діапазоні від 30 до 80 = </b>" +
-          summ +
-          ";" +
-          "<br>"
-      );
-
-      //8. Вивести всі числа в діапазоні від 100 до 200 кратні 3
-      let p = "";
-      for (let i = 100; i <= 200; i++)
-        if (i % 3 == 0) {
-          p = p + i + "; ";
-        }
-
-      document.write(
-        "<br> <b> 8. Вивести всі числа в діапазоні від 100 до 200 кратні 3: </b>" +
-          "<br>" +
-          p +
-          "<br>"
-      );
-
-      //9. Дано натуральне число. Знайти та вивести на сторінку всі його дільники
-      let naturalNum = +prompt("Введіть будь-яке натуральне число", "");
-      let count = 0,
-        sum1 = 0;
-
-      document.write(
-        `<br> <b> 9. Знайти та вивести на сторінку всі дільники числа ${naturalNum}: </b>`
-      );
-      for (let i = 2; i * 2 <= naturalNum; i++) {
-        if (naturalNum % i == 0) {
-          document.write(` ${i};`);
-          //10. Визначити кількість його парних дільників
-          if (i % 2 === 0) {
-            count++;
-            //11. Знайти суму його парних дільників
-            sum1 += i;
-          }
+        //Return results
+        if (num == 1) {
+          return "можна одержати шляхом зведення числа 3 у деякий ступінь";
+        } else {
+          return "не можна одержати шляхом зведення числа 3 у деякий ступінь";
         }
       }
-
+      // Append results
       document.write(
-        `<br> <br> <b> 10. Кількість парних дільників числа ${naturalNum}: </b> ${count} <br>`
+        "<br> <b> 5. Ціле число " + num + " " + third(num) + "<br> </b>"
       );
-      document.write(
-        `<br> <b> 11. Сума парних дільників числа ${naturalNum}: </b> ${sum1} <br>`
-      );
-
-      //12. Надрукувати повну таблицю множення від 1 до 10
-      document.write(
-        "<br> <b> 12. Надрукувати повну таблицю множення від 1 до 10: </b>" +
-          "<br>"
-      );
-      for (let j = 1; j <= 10; j++) {
-        document.write("<div style='float: left; width: 120px;'>");
-        for (let i = 1; i <= 10; i++) {
-          document.write(i + "*" + j + "=" + i * j + "<br>");
-        }
-        document.write("</div>");
-      }
     </script>
   </body>
 </html>
